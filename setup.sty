@@ -1,0 +1,173 @@
+% Diese Vorlage soll als Grundlage für die Erstellung eines Protokolls
+% im Rahmen des Praktikums (F-Praktikum Physik, TU Dresden) dienen.
+% Viele wichtige Pakete sind schon mit eingebunden, aber es können
+% auch noch weiter Pakete notwendig werden. Auf jedene Fall ist zu
+% beachten, dass dies keine offizielle Vorlage ist und somit auch
+% eine andere Form gewählt werden kann und evtl. auch von den
+% Betreuern erwartet wird.
+%
+% Erstellt wird das Dokument mit dem Befehl "pdflatex Protokoll", wenn
+% ihr das Dokument per Kommandozeile erstellen wollt. Ihr müsst euch dafür
+% im Verzeichnis des Protokolls befinden. Diejenigen, die mit einem
+% LaTeX-Editor schreiben, stellen als Compiler entsprechend PDFLaTeX ein.
+%
+% Bitte schaut auch mindest alle Stellen an, die mit TODO gekennzeichnet sind.
+%
+% Zusätzlich zur Präambel ist auch noch etwas Beispieltext mit angegeben. Der
+% die Verwendung einiger der etlichen Befehle zeigt.
+% Das Bibliographieverzeichnis ist manuell erstellt worden, was für ein
+% Praktikum meistens der weniger aufwändige Weg ist.
+% Für umfangreichere Verzeichnisse hilft es sich mit „biblatex“ vertraut zu
+% machen
+%
+% Die Vorlage kann *beliebig* weiterverwendet werden.
+% CC0 Henning Iseke 
+%---------------------------------------------------------------------
+
+% -- Anfang Präambel
+\usepackage[utf8]{inputenc}  % Kodierung der Datei
+\usepackage[T1]{fontenc}  % Vollen Umfang der Schriftzeichen
+\usepackage[ngerman]{babel}  % Sprache auf Deutsch (neue Rechtschreibung)
+\usepackage{acronym}
+
+% Mathematik und Größen
+\usepackage{amsmath}
+\numberwithin{equation}{section}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{bbold}      %Einheitsmatrix
+\usepackage{mathtools}
+\usepackage{siunitx}
+\usepackage{dsfont}   % Einheitsmatrix
+\usepackage{physics}  % Erstellung von Gleichungen vereinfachen
+\usepackage{float}    % Positionierung von Bildern
+\usepackage{microtype}
+\usepackage{vwcol}  % unterschiedlich breite Spalten
+\usepackage{amsthm}
+\usepackage[weather]{ifsym}
+
+
+\usepackage{graphicx}  % Bilder einbinden \includegraphics{Pfad/zur/Datei(ohne Dateiendung)}
+ \usepackage{caption}
+ \usepackage{tikz}
+ \usetikzlibrary{patterns}
+\usetikzlibrary{tikzmark,decorations.pathreplacing,calligraphy}
+% Gestaltung
+
+%\usepackage{microtype}  % Mikrotypographie (kann man am Ende verwenden)
+\usepackage{booktabs}  % schönere Tabellen
+\usepackage{tabularx}
+\usepackage{multicol} 
+\usepackage[titles]{tocloft}
+\usepackage{wrapfig} % textumflossene Bilder
+
+\usepackage{multicol}
+
+\usepackage{csquotes}  % Anführungszeichen mit \enquote
+\usepackage{caption}  % Anpassung der Bildunterschriften, Tabellenüberschriften
+\usepackage{subcaption}  % Unterabbildungen, Untertabellen, …
+\usepackage{enumitem}  % Listen anpassen
+\setlist{itemsep=-10pt}  % Abstände zwischen Listenpunkten verringern
+
+\usepackage[colorlinks = true, linkcolor = {blue}, urlcolor = {blue}]{hyperref}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18} 
+% Manipulation des Seitenstils
+\usepackage[headsepline]{scrlayer-scrpage}
+% Kopf-/Fußzeilen setzen
+\pagestyle{scrheadings}  % Stil für die Seite setzen
+\clearmainofpairofpagestyles  % Stil zurücksetzen, um ihn neu zu definieren
+\automark{section}  % Abschnittsnamen als Seitenbeschriftung verwenden
+\ofoot{\pagemark}  % Seitenzahl außen in Fußzeile
+\ihead{\headmark}  % Seitenbeschriftung mittig in Kopfzeile
+
+
+%\usepackage[hidelinks]{hyperref}  % Links und weitere PDF-Features
+\usepackage{cleveref}  % Für intelligente Referenzen mit \cref
+\usepackage[left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm]{geometry}
+
+% TODO: Titel und Autor, … festlegen
+\newcommand*{\titel}{Thermodynamik und Statistische Physik}
+\newcommand*{\autor}{Luca Julien Fischer, \n Nadine Diesel}
+\newcommand*{\abk}{}
+\newcommand*{\betreuer}{Prof. Dr. Roland Ketzmerick}
+\newcommand*{\messung}{}
+\newcommand*{\ort}{} 
+
+%\hypersetup{pdfauthor={\autor}, pdftitle={\titel}}  % PDF-Metadaten setzen
+
+
+\newenvironment{Figure}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\medskip}
+  
+\newcommand{\equa}[1]{(\ref{#1})}
+
+% Abstände zwischen den Stichpunkten
+\let\tempone\itemize
+\let\temptwo\enditemize
+\renewenvironment{itemize}{\tempone\addtolength{\itemsep}{0.5\baselineskip}}{\temptwo}
+
+\let\tempthree\enumerate
+\let\tempfour\endenumerate
+\renewenvironment{enumerate}{\tempthree\addtolength{\itemsep}{0.5\baselineskip}}{\tempfour}
+
+\usepackage{tcolorbox}
+\usepackage{svg}
+
+\usepackage{dirtytalk}
+
+
+\newenvironment{definition}[1]{
+    \vspace{0.3cm}
+    \begin{tcolorbox}[colback=red!5!white,colframe=red!70!black, title= #1]
+    }
+    {\end{tcolorbox}
+    \vspace{0.3cm}}
+
+\newenvironment{prop}[1]{
+    \vspace{0.3cm}
+    \begin{tcolorbox}[colback=green!5!white,colframe=green!60!black, title= #1]
+    }
+    {\end{tcolorbox}
+    \vspace{0.3cm}}
+    
+\newenvironment{beispiel}[1]{
+    \begin{tcolorbox}[colback=black!5!white,colframe=white!60!black, title= #1]
+    }
+    {\end{tcolorbox}}
+
+
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+
+\newcommand{\abl}[2]{\frac{d #1}{d #2}}
+
+
+
+\usepackage{mathtools}
+
+%schönere Achsen pgf plots
+\usetikzlibrary{arrows, decorations.markings,angles,quotes}
+\tikzset{
+    nomorepostaction/.code=\makeatletter\let\tikz@postactions\pgfutil@empty, % From https://tex.stackexchange.com/questions/3184/applying-a-postaction-to-every-path-in-tikz/5354#5354
+    my axis/.style={
+        postaction={
+            decoration={
+                markings,
+                mark=at position 1 with {
+                    \arrow[ultra thick]{latex}
+                }
+            },
+            decorate,
+            nomorepostaction
+        },
+        thin,
+        -, % switch off other arrow tips
+        every path/.append style=my axis % this is necessary so it works both with "axis lines=left" and "axis lines=middle"
+    }
+}
+\makeatother
+
